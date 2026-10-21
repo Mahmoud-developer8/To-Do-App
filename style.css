@@ -1,0 +1,219 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg: #0b1020;
+  --card: #111a2e;
+  --task-bg: #151f35;
+  --border: #263657;
+  --primary: #7564ff;
+  --primary-hover: #8b7cff;
+  --text: #f1f5ff;
+  --muted: #929fbd;
+  --success: #42d6a4;
+  --danger: #ff5c75;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at top, #222a58 0%, transparent 55%),
+    var(--bg);
+}
+
+/* Main container */
+.tasks,
+body {
+  scrollbar-color: var(--border) var(--bg);
+}
+
+/* Input and Add button */
+.input {
+  width: min(100%, 600px);
+  min-width: 0;
+  padding: 16px 18px;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  outline: none;
+  font: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgb(117 100 255 / 15%);
+}
+
+.add {
+  padding: 16px 25px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #58a6ff, var(--primary));
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.add:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+.add:active {
+  transform: scale(0.97);
+}
+
+/* Tasks list */
+.tasks {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+/* Single task */
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 17px;
+  background: linear-gradient(145deg, var(--card), var(--task-bg));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s, transform 0.2s;
+  animation: appear 0.25s ease both;
+}
+
+.task:hover {
+  border-color: #53648c;
+  transform: translateY(-2px);
+}
+
+/* Task text */
+.task span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Completed task */
+.task.completed {
+  background: rgb(66 214 164 / 7%);
+  border-color: rgb(66 214 164 / 30%);
+}
+
+.task.completed span {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--success);
+}
+
+/* All task buttons */
+.task button {
+  flex-shrink: 0;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.task button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.task button:active {
+  transform: scale(0.95);
+}
+
+/* Complete button */
+.complete-btn {
+  color: var(--success);
+  background: rgb(66 214 164 / 12%);
+}
+
+/* Delete button */
+.delete-btn {
+  color: var(--danger);
+  background: rgb(255 92 117 / 12%);
+}
+
+/* Keyboard focus */
+button:focus-visible {
+  outline: 2px solid var(--primary-hover);
+  outline-offset: 3px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  body {
+    padding: 24px 12px;
+    align-items: flex-start;
+  }
+
+  .task {
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  .task span {
+    font-size: 13px;
+  }
+
+  .task button {
+    padding: 9px 8px;
+    font-size: 11px;
+  }
+
+  .input {
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+
+  .add {
+    padding: 14px 16px;
+  }
+}
